@@ -1,0 +1,43 @@
+{
+    "users": [
+        {
+            "name": "gavrilov",
+            "password": "111aaa"
+        },
+        {
+            "name": "fedorov",
+            "password": "222bbb"
+        }
+    ],
+    "tickets": {
+        "gavrilov": [
+            {
+                "id": "95708",
+                "label": "Электронная почта",
+                "opened": "20.05.2024 15:22",
+                "modified": "20.05.2024 17:22",
+                "deadline": "21.05.2024 15:22",
+                "status": "В работе",
+                "needs_feedback": false,
+                "description": "Прошу сделать переадресацию на время отпуска",
+                "solution": "",
+                "service": "Интернет",
+                "service_details": "Почта"
+            },
+            {
+                "id": "95802",
+                "label": "Установка платформы",
+                "opened": "22.05.2024 11:03",
+                "modified": "22.05.2024 11:03",
+                "deadline": "23.05.2024 11:03",
+                "status": "Зарегистрировано",
+                "needs_feedback": false,
+                "description": "Прошу установить платформу 8.3.24",
+                "solution": "",
+                "service": "Поддержка рабочих мест",
+                "service_details": "Настройка ПО"
+            }
+        ],
+        "fedorov": []
+    }
+}
