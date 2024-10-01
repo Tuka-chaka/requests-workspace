@@ -11,9 +11,13 @@ const Paginator: React.FunctionComponent<IAppProps> = ({pages}) => {
 
   const router = useRouter()
   const searchParams = useSearchParams()
-  const page = parseInt(searchParams.get('page') ?? '1')
+  const page = parseInt(searchParams.get('page') ?? '0')
   const orderBy = searchParams.get('orderBy') ?? 'Номер'
   const isAscending = searchParams.get('isAscending') ?? 'true'
+
+  if (pages < 2) {
+    return <></>
+  }
 
   return(
     <ReactPaginate
@@ -26,6 +30,7 @@ const Paginator: React.FunctionComponent<IAppProps> = ({pages}) => {
         previousLabel="<"
         renderOnZeroPageCount={null}
         initialPage={page}
+        disableInitialCallback={true}
         containerClassName={styles.paginator}
         previousClassName={styles.hidden}
         nextClassName={styles.hidden}

@@ -1,0 +1,91 @@
+.container {
+    width: 86%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .controls {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin-bottom: 15px;
+
+        .backButton {
+            padding: 10px 15px;
+            background-color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+
+            &:hover {
+                background-color: lightcyan;
+            }
+        }
+    }
+
+    .expand {
+        background-color: lightcyan;
+        padding: 12px 15px 8px 15px;
+        border-radius: 0 0 50% 50%;
+        cursor: pointer;
+    }
+}
+
+.card {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-between;
+    background-color: white;
+    padding: 20px 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 lightGrey;
+    transition: height 1s ease;
+
+    .contentColumn {
+        display: flex;
+        flex-direction: column;
+
+        .date {
+            font-size: 0.8em;
+            color: grey;
+            margin-bottom: 10px;
+        }
+
+        .label {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            font-size: 0.9em;
+        }
+    }
+
+    .detailsColumn {
+        min-width: 30%;
+        display: flex;
+        flex-direction: column;
+
+        .status {
+            font-size: 0.8em;
+            margin-bottom: 25px;
+        }
+
+        .detailName {
+            font-size: 0.8em;
+            color: grey;
+            margin-bottom: 10px;
+        }
+        .detail {
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+    }
+}

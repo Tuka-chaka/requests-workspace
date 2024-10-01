@@ -1,13 +1,21 @@
+// .wrapper {
+//     height: calc(100vh - 100px);
+//     width: 86%;
+//     margin: auto;
+//     background-color: white;
+// }
+
 .tableContainer{
     overflow-x: auto;
+    scrollbar-width: thin;
+    
     
     .table {
         font-size: 0.8em;
         min-width: 86%;
-        
-        background-color: #ffffff;
-        margin-left: auto;
         margin-right: auto;
+        margin-left: auto;
+        background-color: #ffffff;
         border-radius: 5px;
         border-collapse: collapse;
 

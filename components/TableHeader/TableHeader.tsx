@@ -14,7 +14,7 @@ const TableHeader: React.FunctionComponent<TableHeaderProps> = ({label}) => {
   const router = useRouter()
   const orderBy = searchParams.get('orderBy') ?? 'Номер'
   const isAscending: boolean = searchParams.get('isAscending') === 'true' ?? true
-  const page = searchParams.get('page') ?? '1'
+  const page = searchParams.get('page') ?? '0'
 
   const handleClick = () => {
     router.push(`/dashboard/?orderBy=${label}&isAscending=${orderBy === label ? !isAscending: 'false'}&page=${page}`)

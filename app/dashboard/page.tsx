@@ -1,12 +1,9 @@
-import Table from '@/components/TableHeader/TableHeader';
 import { promises as fs } from 'fs';
 import { Ticket } from "@/types";
 import styles from './page.module.scss'
 import { getStatusColor, parseDate } from "@/helpers";
-import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 import { FaCircle } from "react-icons/fa";
 import { FaTriangleExclamation } from "react-icons/fa6";
-import { IconContext } from "react-icons";
 import Link from 'next/link'
 import TableHeader from '@/components/TableHeader/TableHeader';
 import Paginator from '@/components/Paginator/Paginator';
@@ -20,7 +17,7 @@ export default async function RequestsTable({searchParams} : DashboardProps) {
 
   const orderBy = searchParams!['orderBy'] ?? 'Номер'
   const isAscending = searchParams!['isAscending'] ?? 'false'
-  const page = parseInt(searchParams!['page'] as string ?? '1')
+  const page = parseInt(searchParams!['page'] as string ?? '0')
   const file = await fs.readFile(process.cwd() + '/app/data.json', 'utf8');
   const data = JSON.parse(file);  
   
@@ -55,7 +52,7 @@ export default async function RequestsTable({searchParams} : DashboardProps) {
     if (isAscending !== 'false') {
       newTickets.reverse()
     }
-    return newTickets.slice(page, page+1)
+    return newTickets.slice(page*2, page*2 + 2)
   }
 
   return (
@@ -89,7 +86,7 @@ export default async function RequestsTable({searchParams} : DashboardProps) {
         </tbody>
     </table>
     </div>
-    <Paginator pages={Math.floor(data.tickets.gavrilov.length)}/>
+    <Paginator pages={Math.floor(data.tickets.gavrilov.length / 2)}/>
     </>
   );
 };
