@@ -6,9 +6,9 @@ export default async function RequestsTable() {
   const data = JSON.parse(file);
 
   return (
-    <div>
+    <>
       <Table tickets={data.tickets.gavrilov}/>
-    </div>
+    </>
   );
 };
 

@@ -36,6 +36,32 @@
                 "solution": "",
                 "service": "Поддержка рабочих мест",
                 "service_details": "Настройка ПО"
+            },
+            {
+                "id": "95803",
+                "label": "Подключение к сети",
+                "opened": "24.05.2024 9:41",
+                "modified": "24.05.2024 11:41",
+                "deadline": "25.05.2024 9:41",
+                "status": "На согласовании",
+                "needs_feedback": false,
+                "description": "Нужен доступ к serversoft",
+                "solution": "",
+                "service": "Интернет",
+                "service_details": "Доступ"
+            },
+            {
+                "id": "95804",
+                "label": "Установка ПО на ПК",
+                "opened": "24.05.2024 12:30",
+                "modified": "24.05.2024 12:30",
+                "deadline": "25.05.2024 12:30",
+                "status": "Выполнено. Требует подтверждения",
+                "needs_feedback": true,
+                "description": "Для нового сотрудника нужна IDE",
+                "solution": "Софт установлен",
+                "service": "Поддержка рабочих мест",
+                "service_details": "Настройка ПО"
             }
         ],
         "fedorov": []
