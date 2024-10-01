@@ -1,6 +1,5 @@
 'use client';
 import { Ticket } from "@/types";
-import { useEffect, useState } from "react";
 import styles from './Table.module.scss'
 import { getStatusColor, parseDate } from "@/helpers";
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
@@ -15,43 +14,26 @@ interface TableProps {
 }
 
 interface TableHeaderProps {
-  onSort: (callback: (a: Ticket, b: Ticket) => number, label: string, isAscending: boolean) => void
-  sortFunction: (a: Ticket, b: Ticket) => number
   currentSortOrder: string
   label: string
 }
 
 const Table: React.FunctionComponent<TableProps> = (props) => {
 
-  const router = useRouter()
   const searchParams = useSearchParams()
-  
-  const [tickets, setTickets] = useState(props.tickets)
-  const [sortOrder, setSortOrder] = useState("none")
-
-  const handleClick = (sortFunction: (a: Ticket, b: Ticket) => number, label: string, isAscending: boolean) => {
-    const nextTickets = [...tickets]
-    // nextTickets.sort(sortFunction)
-    // if (!isAscending) {
-    //   nextTickets.reverse()
-    // }
-    setTickets(nextTickets)
-    setSortOrder(label)
-    console.log(isAscending)
-    router.push(`/dashboard/?orderBy=${label}&isAscending=${isAscending}`)
-  }
+  const orderBy = searchParams.get('orderBy') ?? 'Номер'
 
   return (
     <div className={styles.tableContainer}>
     <table className={styles.table}>
         <thead>
           <tr className={styles.tableHead}>
-            <TableHeader currentSortOrder={sortOrder} label="Тема" onSort={handleClick} sortFunction={(a, b) => a.label.localeCompare(b.label)}/>
-            <TableHeader currentSortOrder={sortOrder} label="Номер" onSort={handleClick} sortFunction={(a, b) => parseInt(a.id) - parseInt(b.id)}/>
-            <TableHeader currentSortOrder={sortOrder} label="Дата создания" onSort={handleClick} sortFunction={(a, b) => parseDate(a.opened).getTime() - parseDate(b.opened).getTime()}/>
-            <TableHeader currentSortOrder={sortOrder} label="Дата изменения" onSort={handleClick} sortFunction={(a, b) => parseDate(a.modified).getTime() - parseDate(b.modified).getTime()}/>
-            <TableHeader currentSortOrder={sortOrder} label="Крайний срок" onSort={handleClick} sortFunction={(a, b) => parseDate(a.deadline).getTime() - parseDate(b.deadline).getTime()}/>
-            <TableHeader currentSortOrder={sortOrder} label="Состояние" onSort={handleClick} sortFunction={(a, b) => a.status.localeCompare(b.status)}/>
+            <TableHeader currentSortOrder={orderBy} label="Тема"/>
+            <TableHeader currentSortOrder={orderBy} label="Номер"/>
+            <TableHeader currentSortOrder={orderBy} label="Дата создания"/>
+            <TableHeader currentSortOrder={orderBy} label="Дата изменения"/>
+            <TableHeader currentSortOrder={orderBy} label="Крайний срок"/>
+            <TableHeader currentSortOrder={orderBy} label="Состояние"/>
           </tr>
         </thead>
         <tbody>
@@ -74,21 +56,15 @@ const Table: React.FunctionComponent<TableProps> = (props) => {
   );
 };
 
-const TableHeader: React.FunctionComponent<TableHeaderProps> = ({currentSortOrder, label, onSort, sortFunction}) => {
+const TableHeader: React.FunctionComponent<TableHeaderProps> = ({currentSortOrder, label}) => {
 
-  const [isAscending, setIsAscending] = useState(true)
-
-  useEffect(() => {
-
-    setIsAscending(currentSortOrder !== label)
-
-  }, [currentSortOrder, label])
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const orderBy = searchParams.get('orderBy') ?? 'Номер'
+  const isAscending: boolean = searchParams.get('isAscending') === 'true' ?? true
 
   const handleClick = () => {
-    if (currentSortOrder === label) {
-      setIsAscending(isAscending => !isAscending)
-    }
-    onSort(sortFunction, label, isAscending)
+    router.push(`/dashboard/?orderBy=${label}&isAscending=${currentSortOrder === label ? !isAscending: 'false'}`)
   }
 
   return (

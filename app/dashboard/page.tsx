@@ -10,18 +10,14 @@ type DashboardProps = {
 
 export default async function RequestsTable({searchParams} : DashboardProps) {
 
-  const orderBy = searchParams['orderBy'] ?? 'none'
-  const isAscending = searchParams['isAscending'] ?? 'none'
+  const orderBy = searchParams!['orderBy'] ?? 'Номер'
+  const isAscending = searchParams!['isAscending'] ?? 'false'
   const file = await fs.readFile(process.cwd() + '/app/data.json', 'utf8');
   const data = JSON.parse(file);  
   
   const prepareData = (tickets: Ticket[]) => {
     let newTickets = [...tickets]
     switch(orderBy) {
-      case 'none': {
-        newTickets = tickets.slice(2)
-        break
-      }
       case 'Тема': {
         console.log(searchParams)
         newTickets = tickets.toSorted((a, b) => a.label.localeCompare(b.label))
@@ -50,7 +46,7 @@ export default async function RequestsTable({searchParams} : DashboardProps) {
         break
       }
     }
-    if (isAscending === 'false') {
+    if (isAscending !== 'false') {
       newTickets.reverse()
     }
     return newTickets
