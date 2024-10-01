@@ -1,7 +1,14 @@
-import Table from '@/components/Table/Table';
+import Table from '@/components/TableHeader/TableHeader';
 import { promises as fs } from 'fs';
 import { Ticket } from "@/types";
-import { parseDate } from '@/helpers';
+import styles from './page.module.scss'
+import { getStatusColor, parseDate } from "@/helpers";
+import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
+import { FaCircle } from "react-icons/fa";
+import { FaTriangleExclamation } from "react-icons/fa6";
+import { IconContext } from "react-icons";
+import Link from 'next/link'
+import TableHeader from '@/components/TableHeader/TableHeader';
 
 
 type DashboardProps = {
@@ -53,9 +60,35 @@ export default async function RequestsTable({searchParams} : DashboardProps) {
   }
 
   return (
-    <>
-      <Table tickets={prepareData(data.tickets.gavrilov)}/>
-    </>
+    <div className={styles.tableContainer}>
+    <table className={styles.table}>
+        <thead>
+          <tr className={styles.tableHead}>
+            <TableHeader label="Тема"/>
+            <TableHeader label="Номер"/>
+            <TableHeader label="Дата создания"/>
+            <TableHeader label="Дата изменения"/>
+            <TableHeader label="Крайний срок"/>
+            <TableHeader label="Состояние"/>
+          </tr>
+        </thead>
+        <tbody>
+            {prepareData(data.tickets.gavrilov).map(ticket => <tr className={styles.tableRow} key={ticket.id}>
+                <td><div className={styles.withIcon}><Link className={styles.link} href={`/dashboard/${ticket.id}`} >{ticket.label}</Link>
+                {ticket.needs_feedback ? <FaTriangleExclamation style={{color: 'red', marginLeft: '0.5em'}}/> : <></>}
+                </div></td>
+                <td>{`№ ${ticket.id.padStart(10, '0')}`}</td>
+                <td>{ticket.opened}</td>
+                <td>{ticket.modified}</td>
+                <td>{ticket.deadline}</td>
+                <td>{<div  className={styles.withIcon}>
+                <FaCircle style={{color: getStatusColor(ticket.status), marginRight: '0.5em'}} size='0.6em'/>
+                {ticket.status}
+                </div>}</td>
+            </tr>)}
+        </tbody>
+    </table>
+    </div>
   );
 };
 

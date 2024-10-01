@@ -1,0 +1,59 @@
+.tableContainer{
+    overflow-x: auto;
+    
+    .table {
+        font-size: 0.8em;
+        min-width: 86%;
+        background-color: #ffffff;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 5px;
+        border-collapse: collapse;
+    
+        .tableHead {
+
+            th{
+                &:first-child {
+                    width: 30%;
+                }
+                
+                text-wrap: nowrap;
+                text-align: left;
+                font-weight: normal;
+                user-select: none;
+                padding: 15px;
+                cursor: pointer;
+                
+                .thCenter {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                }
+            }
+        }
+
+        tr {
+            border-bottom: 1px solid #bcbcbc;
+        }
+    }
+
+    td {
+        padding: 15px;
+        text-wrap: nowrap;
+
+        .withIcon {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .link {
+            color: rgb(2, 79, 221);
+            font-weight: bold;
+        }
+    }
+
+}
+
+
+
