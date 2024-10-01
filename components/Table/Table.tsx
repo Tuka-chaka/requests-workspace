@@ -8,6 +8,7 @@ import { FaCircle } from "react-icons/fa";
 import { FaTriangleExclamation } from "react-icons/fa6";
 import { IconContext } from "react-icons";
 import Link from 'next/link'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 interface TableProps {
   tickets: Ticket[]
@@ -21,19 +22,23 @@ interface TableHeaderProps {
 }
 
 const Table: React.FunctionComponent<TableProps> = (props) => {
+
+  const router = useRouter()
+  const searchParams = useSearchParams()
   
   const [tickets, setTickets] = useState(props.tickets)
   const [sortOrder, setSortOrder] = useState("none")
 
   const handleClick = (sortFunction: (a: Ticket, b: Ticket) => number, label: string, isAscending: boolean) => {
     const nextTickets = [...tickets]
-    nextTickets.sort(sortFunction)
-    if (!isAscending) {
-      nextTickets.reverse()
-    }
+    // nextTickets.sort(sortFunction)
+    // if (!isAscending) {
+    //   nextTickets.reverse()
+    // }
     setTickets(nextTickets)
     setSortOrder(label)
     console.log(isAscending)
+    router.push(`/dashboard/?orderBy=${label}&isAscending=${isAscending}`)
   }
 
   return (
@@ -50,7 +55,7 @@ const Table: React.FunctionComponent<TableProps> = (props) => {
           </tr>
         </thead>
         <tbody>
-            {tickets.map(ticket => <tr className={styles.tableRow} key={ticket.id}>
+            {props.tickets.map(ticket => <tr className={styles.tableRow} key={ticket.id}>
                 <td><div className={styles.withIcon}><Link className={styles.link} href={`/dashboard/${ticket.id}`} >{ticket.label}</Link>
                 {ticket.needs_feedback ? <FaTriangleExclamation style={{color: 'red', marginLeft: '0.5em'}}/> : <></>}
                 </div></td>
