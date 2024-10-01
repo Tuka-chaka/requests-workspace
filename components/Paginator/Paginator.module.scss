@@ -1,0 +1,55 @@
+.paginator
+{
+    font-size: 1.3em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 20px;
+
+}
+
+.hidden {
+    display: none;
+}
+
+.break {
+    list-style: none;
+    user-select: none;
+    list-style: none;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: lightgrey;
+
+    a {
+        cursor: pointer;
+    }
+}
+
+.page {
+    list-style: none;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 40px;
+    border-radius: 50%;
+
+    .pageLink {
+        cursor: pointer;
+    }
+
+    &.activePage {
+        cursor: default;
+        color: white;
+        background-color: deepskyblue;
+    }
+}

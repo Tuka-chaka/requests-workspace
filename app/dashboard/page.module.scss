@@ -4,11 +4,16 @@
     .table {
         font-size: 0.8em;
         min-width: 86%;
+        
         background-color: #ffffff;
         margin-left: auto;
         margin-right: auto;
         border-radius: 5px;
         border-collapse: collapse;
+
+        tbody{
+            overflow-y: scroll;
+        }
     
         .tableHead {
 

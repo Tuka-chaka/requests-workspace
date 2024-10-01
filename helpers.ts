@@ -8,7 +8,7 @@ function getStatusColor(status: string): string {
     if (['В работе','Зарегистрировано'].includes(status)) {
         return 'yellow'
     }
-    if (['Выполнено, требует подтверждения','На согласовании'].includes(status)) {
+    if (['Выполнено. Требует подтверждения','На согласовании'].includes(status)) {
         return 'blue'
     }
     else {
