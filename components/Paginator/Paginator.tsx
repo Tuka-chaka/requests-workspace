@@ -3,11 +3,11 @@ import styles from './Paginator.module.scss'
 import { useRouter, useSearchParams } from 'next/navigation'
 import ReactPaginate from 'react-paginate'
 
-interface IAppProps {
+interface PaginatorProps {
   pages: number;
 }
 
-const Paginator: React.FunctionComponent<IAppProps> = ({pages}) => {
+const Paginator: React.FunctionComponent<PaginatorProps> = ({pages}) => {
 
   const router = useRouter()
   const searchParams = useSearchParams()

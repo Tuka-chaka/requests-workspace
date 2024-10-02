@@ -17,4 +17,9 @@ interface Ticket {
     service_details: string
 }
 
+interface User {
+    name: string
+    password: string
+}
+
 export type {User, Ticket}
