@@ -45,6 +45,15 @@
             &:hover {
                 background-color: gray;
             }
+
+            &:disabled {
+                background-color: lightcyan;
+                cursor: default;
+            }
+        }
+
+        p {
+            color: red;
         }
     }
 }

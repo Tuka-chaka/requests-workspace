@@ -4,10 +4,11 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import ReactPaginate from 'react-paginate'
 
 interface PaginatorProps {
-  pages: number;
+  pages: number
+  user: string
 }
 
-const Paginator: React.FunctionComponent<PaginatorProps> = ({pages}) => {
+const Paginator: React.FunctionComponent<PaginatorProps> = ({pages, user}) => {
 
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -23,13 +24,13 @@ const Paginator: React.FunctionComponent<PaginatorProps> = ({pages}) => {
     <ReactPaginate
         breakLabel="..."
         nextLabel=">"
-        onPageChange={(selected) => router.push(`/dashboard/?orderBy=${orderBy}&isAscending=${isAscending}&page=${selected.selected}`)}
+        onPageChange={(selected) => router.push(`/${user}/?orderBy=${orderBy}&isAscending=${isAscending}&page=${selected.selected}`)}
         pageRangeDisplayed={3}
         marginPagesDisplayed={1}
         pageCount={pages}
         previousLabel="<"
         renderOnZeroPageCount={null}
-        initialPage={page}
+        forcePage={page}
         disableInitialCallback={true}
         containerClassName={styles.paginator}
         previousClassName={styles.hidden}

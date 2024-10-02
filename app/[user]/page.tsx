@@ -10,10 +10,11 @@ import Paginator from '@/components/Paginator/Paginator';
 
 
 type DashboardProps = {
-  searchParams?: { [key: string]: string | string[] | undefined };
+  searchParams?: { [key: string]: string | string[] | undefined }
+  params: {user: string}
 }
 
-export default async function RequestsTable({searchParams} : DashboardProps) {
+export default async function RequestsTable({searchParams, params} : DashboardProps) {
 
   const orderBy = searchParams!['orderBy'] ?? 'Номер'
   const isAscending = searchParams!['isAscending'] ?? 'false'
@@ -52,7 +53,13 @@ export default async function RequestsTable({searchParams} : DashboardProps) {
     if (isAscending !== 'false') {
       newTickets.reverse()
     }
-    return newTickets.slice(page*2, page*2 + 2)
+    return newTickets.slice(page*4, page*4 + 4)
+  }
+
+  if (data.tickets[params.user].length < 1) {
+    return(
+      <div className={styles.noTickets}>Поданных обращений нет</div>
+    )
   }
 
   return (
@@ -61,17 +68,17 @@ export default async function RequestsTable({searchParams} : DashboardProps) {
     <table className={styles.table}>
         <thead>
           <tr className={styles.tableHead}>
-            <TableHeader label="Тема"/>
-            <TableHeader label="Номер"/>
-            <TableHeader label="Дата создания"/>
-            <TableHeader label="Дата изменения"/>
-            <TableHeader label="Крайний срок"/>
-            <TableHeader label="Состояние"/>
+            <TableHeader user={params.user} label="Тема"/>
+            <TableHeader user={params.user} label="Номер"/>
+            <TableHeader user={params.user} label="Дата создания"/>
+            <TableHeader user={params.user} label="Дата изменения"/>
+            <TableHeader user={params.user} label="Крайний срок"/>
+            <TableHeader user={params.user} label="Состояние"/>
           </tr>
         </thead>
         <tbody>
-            {prepareData(data.tickets.gavrilov).map(ticket => <tr className={styles.tableRow} key={ticket.id}>
-                <td><div className={styles.withIcon}><Link className={styles.link} href={`/dashboard/${ticket.id}`} >{ticket.label}</Link>
+            {prepareData(data.tickets[params.user]).map(ticket => <tr className={styles.tableRow} key={ticket.id}>
+                <td><div className={styles.withIcon}><Link className={styles.link} href={`/${params.user}/${ticket.id}`} >{ticket.label}</Link>
                 {ticket.needs_feedback ? <FaTriangleExclamation style={{color: 'red', marginLeft: '0.5em'}}/> : <></>}
                 </div></td>
                 <td>{`№ ${ticket.id.padStart(10, '0')}`}</td>
@@ -86,7 +93,7 @@ export default async function RequestsTable({searchParams} : DashboardProps) {
         </tbody>
     </table>
     </div>
-    <Paginator pages={Math.floor(data.tickets.gavrilov.length / 2)}/>
+    <Paginator user={params.user} pages={Math.floor(data.tickets[params.user].length / 4)}/>
     </>
   );
 };

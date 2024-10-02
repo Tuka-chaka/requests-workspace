@@ -31,7 +31,7 @@ const TicketCard: React.FunctionComponent<TicketCardProps> = ({ticket}) => {
         </div>
         <div className={styles.detailsColumn}>
           <div className={styles.status}><FaCircle style={{color: getStatusColor(ticket.status), marginRight: '0.5em'}} size='0.6em'/>
-          {ticket.status}
+          <span className={styles.nowrap}>{ticket.status}</span>
           </div>
           <div className={styles.detailName}>Крайний срок</div>
           <div className={styles.detail}>{ticket.deadline}</div>

@@ -6,9 +6,10 @@ import { useRouter, useSearchParams } from 'next/navigation'
 
 interface TableHeaderProps {
   label: string
+  user: string
 }
 
-const TableHeader: React.FunctionComponent<TableHeaderProps> = ({label}) => {
+const TableHeader: React.FunctionComponent<TableHeaderProps> = ({label, user}) => {
 
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -17,7 +18,7 @@ const TableHeader: React.FunctionComponent<TableHeaderProps> = ({label}) => {
   const page = searchParams.get('page') ?? '0'
 
   const handleClick = () => {
-    router.push(`/dashboard/?orderBy=${label}&isAscending=${orderBy === label ? !isAscending: 'false'}&page=${page}`)
+    router.replace(`/${user}/?orderBy=${label}&isAscending=${orderBy === label ? !isAscending: 'false'}&page=${page}`)
   }
 
   return (

@@ -1,6 +1,7 @@
 'use client'
 
-import { User } from '@/types';
+import { signUp } from '@/app/actions';
+import { useFormState, useFormStatus } from 'react-dom'
 import styles from './LoginForm.module.scss'
 
 interface LoginFormProps {
@@ -9,10 +10,11 @@ interface LoginFormProps {
 
 const LoginForm: React.FunctionComponent<LoginFormProps> = () => {
 
+  const [state, action] = useFormState(signUp, undefined)
   return ( 
     <div className={styles.container}>
       <div className={styles.heading}>Вход в сервис</div>
-      <form>
+      <form action={action}>
         <input 
         id='login'
         name='login'
@@ -23,10 +25,21 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = () => {
         name='password'
         type='password'
         placeholder='Пароль' />
-        <button>ВОЙТИ</button>
+        {state && <p>{state}</p>}
+        <SubmitButton/>
       </form>
     </div>
   );
 };
+
+function SubmitButton() {
+  const { pending } = useFormStatus()
+ 
+  return (
+    <button disabled={pending} type="submit">
+      ВОЙТИ
+    </button>
+  )
+}
 
 export default LoginForm;

@@ -1,9 +1,12 @@
-// .wrapper {
-//     height: calc(100vh - 100px);
-//     width: 86%;
-//     margin: auto;
-//     background-color: white;
-// }
+
+
+.noTickets {
+    user-select: none;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    font-size: 1.3em;
+}
 
 .tableContainer{
     overflow-x: auto;
@@ -11,6 +14,8 @@
     
     
     .table {
+        margin-bottom: 30px;
+        box-shadow: 0 0 10px 0 lightGrey;
         font-size: 0.8em;
         min-width: 86%;
         margin-right: auto;
@@ -21,6 +26,12 @@
 
         tbody{
             overflow-y: scroll;
+
+            tr {
+                &:last-child {
+                border-bottom: none;
+                }
+            }
         }
     
         .tableHead {

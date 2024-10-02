@@ -48,8 +48,19 @@
     }
 
     &.activePage {
-        cursor: default;
         color: white;
         background-color: deepskyblue;
+
+        &:hover {
+            background-color: deepskyblue;
+        }
+
+        .pageLink {
+            cursor: default;
+        }
+    }
+
+    &:hover {
+        background-color: lightcyan
     }
 }
