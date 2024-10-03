@@ -17,7 +17,7 @@
         margin-bottom: 30px;
         box-shadow: 0 0 10px 0 lightGrey;
         font-size: 0.8em;
-        min-width: 86%;
+        width: 86%;
         margin-right: auto;
         margin-left: auto;
         background-color: #ffffff;
@@ -41,6 +41,7 @@
                     width: 30%;
                 }
                 
+                width: 14%;
                 text-wrap: nowrap;
                 text-align: left;
                 font-weight: normal;
@@ -53,6 +54,10 @@
                     flex-direction: row;
                     align-items: center;
                 }
+
+                // &:last-child {
+                //     width: 14%;
+                // }
             }
         }
 
@@ -72,8 +77,16 @@
         }
 
         .link {
-            color: rgb(2, 79, 221);
+            color: rgb(37, 110, 245);
             font-weight: bold;
+
+            &:active {
+                color: skyblue;
+            }
+        }
+
+        &:last-child {
+            text-wrap: wrap;
         }
     }
 

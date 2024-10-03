@@ -4,11 +4,7 @@ import { signUp } from '@/app/actions';
 import { useFormState, useFormStatus } from 'react-dom'
 import styles from './LoginForm.module.scss'
 
-interface LoginFormProps {
-
-}
-
-const LoginForm: React.FunctionComponent<LoginFormProps> = () => {
+const LoginForm: React.FunctionComponent = () => {
 
   const [state, action] = useFormState(signUp, undefined)
   return ( 

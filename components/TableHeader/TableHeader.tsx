@@ -14,7 +14,7 @@ const TableHeader: React.FunctionComponent<TableHeaderProps> = ({label, user}) =
   const searchParams = useSearchParams()
   const router = useRouter()
   const orderBy = searchParams.get('orderBy') ?? 'Номер'
-  const isAscending: boolean = searchParams.get('isAscending') === 'true' ?? true
+  const isAscending: boolean = searchParams.get('isAscending') === 'true'
   const page = searchParams.get('page') ?? '0'
 
   const handleClick = () => {

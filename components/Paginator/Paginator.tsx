@@ -14,7 +14,7 @@ const Paginator: React.FunctionComponent<PaginatorProps> = ({pages, user}) => {
   const searchParams = useSearchParams()
   const page = parseInt(searchParams.get('page') ?? '0')
   const orderBy = searchParams.get('orderBy') ?? 'Номер'
-  const isAscending = searchParams.get('isAscending') ?? 'true'
+  const isAscending = searchParams?.get('isAscending')
 
   if (pages < 2) {
     return <></>

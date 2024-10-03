@@ -86,7 +86,7 @@ export default async function RequestsTable({searchParams, params} : DashboardPr
                 <td>{ticket.modified}</td>
                 <td>{ticket.deadline}</td>
                 <td>{<div  className={styles.withIcon}>
-                <FaCircle style={{color: getStatusColor(ticket.status), marginRight: '0.5em'}} size='0.6em'/>
+                <FaCircle style={{flexShrink: '0', color: getStatusColor(ticket.status), marginRight: '0.5em'}} size='0.6em'/>
                 {ticket.status}
                 </div>}</td>
             </tr>)}
